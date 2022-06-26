@@ -23,12 +23,20 @@ jobs:
         node-version: [16.x]
 
     steps:
+      - name: Checkout code
       - uses: actions/checkout@v3
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+      - name: cache _ node modules
+        uses: actions/cache@v2
+        with:
+          path: '**/node_modules'
+          key: ${{ runner.os }}-modules-${{ hashFiles('**/yarn-lock.json') }}
       - name: install packages
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn install
       - name: check linting
         run: yarn lint
