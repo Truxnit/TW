@@ -1,0 +1,30 @@
+@import "variables";
+
+h1,
+.h1 {
+  color: $grey-dark;
+  font-weight: $font-weight-normal;
+  margin-top: 1.5rem;
+  font-size: $h1-font-size;
+}
+
+h2,
+.h2 {
+  color: $grey-light;
+  font-weight: $font-weight-light;
+  font-size: $h2-font-size;
+}
+
+h3,
+.h3 {
+  color: $grey-light;
+  font-weight: $font-weight-light;
+  font-size: $h3-font-size;
+}
+
+h4,
+.h4 {
+  color: $temp16;
+  font-weight: $font-weight-light;
+  font-size: $h4-font-size;
+}

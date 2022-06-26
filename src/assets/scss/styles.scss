@@ -1,0 +1,33 @@
+@import "variables";
+@import "global";
+@import "headings";
+
+body {
+  margin: 0;
+  font-family: "Roboto", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: $temp15;
+  line-height: 1.5;
+  font-size: $text-font-size;
+  width: auto;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+#root {
+  position: relative;
+  min-height: 100%;
+  height: 100%;
+  padding: 0 1.25em;
+}
+
+section {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
