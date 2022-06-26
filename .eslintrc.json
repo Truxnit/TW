@@ -1,0 +1,43 @@
+{
+    "plugins": ["import"],
+    "extends": [
+      "eslint:recommended",
+      "plugin:@typescript-eslint/recommended",
+      "react-app",
+      "react-app/jest",
+      "plugin:import/typescript"
+    ],
+    "rules": {
+      "no-restricted-imports": [
+        "error",
+        {
+          "paths": [
+            {
+              "name": "i18next",
+              "message": "Please use our internal translation function src/i18n"
+            },
+            {
+              "name": "react-i18next",
+              "message": "Please use our internal translation function src/i18n"
+            }
+          ]
+        }
+      ],
+      "no-console": ["warn"],
+      "import/no-relative-parent-imports": ["warn"]
+    },
+    "overrides": [
+      {
+        "files": ["src/i18n/translations/*.ts"],
+        "rules": {
+          "sort-keys": "warn"
+        }
+      },
+      {
+        "files": ["**/*.test.ts?(x)"],
+        "rules": {
+          "no-restricted-globals": "off"
+        }
+      }
+    ]
+  }  
