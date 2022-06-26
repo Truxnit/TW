@@ -16,9 +16,9 @@ export const LoginPage: React.FC = () => {
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    console.log("Hello");
+    /*    console.log("Hello");
     console.log("Hello: ", inputValue.username);
-    console.log("Hello: ", inputValue.password);
+    console.log("Hello: ", inputValue.password);*/
   };
 
   const form = (
