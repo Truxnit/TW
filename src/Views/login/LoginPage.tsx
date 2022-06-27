@@ -2,8 +2,12 @@ import React, { FormEvent, useState } from "react";
 import { LoginPageLayout } from "./LoginPageLayout";
 import { useForm } from "src/utils/hooks/useForm";
 import styles from "src/Views/login/LoginPage.module.scss";
+import { useTranslation } from "src/i18n";
+import { ReactComponent as EyeClosed } from "src/assets/images/svg/eye-close.svg";
+import { ReactComponent as EyeOpen } from "src/assets/images/svg/eye-open.svg";
 
 export const LoginPage: React.FC = () => {
+  const { t } = useTranslation();
   //need icon for display Password open Eye and close eyes svg or png???
   const [displayPassword, setDisplayPassword] = useState<boolean>(false);
   const { inputValue, handelInputChange } = useForm({
@@ -11,7 +15,7 @@ export const LoginPage: React.FC = () => {
     username: "",
   });
 
-  const title = <h2>Login</h2>;
+  const title = <h2>{t("loginPage.title")}</h2>;
 
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -24,11 +28,12 @@ export const LoginPage: React.FC = () => {
   const form = (
     <form className={styles.loginForm} onSubmit={submitHandler}>
       <div className={styles.inputContainer}>
-        <label>Name:</label>
+        <label htmlFor={"inputUsername"}>Name:</label>
         <input
+          id={"inputUsername"}
           type="text"
           onChange={(e) => handelInputChange(e)}
-          placeholder="Nutzername"
+          placeholder={t("loginPage.username.placeholder")}
           className=""
           name="username"
           value={inputValue.username}
@@ -36,20 +41,31 @@ export const LoginPage: React.FC = () => {
         />
       </div>
       <div className={styles.inputContainer}>
-        <label>Passwort:</label>
+        <label htmlFor={"inputPassword"}>Passwort:</label>
         <input
+          id={"inputPassword"}
           type={displayPassword ? "text" : "password"}
           onChange={(e) => handelInputChange(e)}
-          placeholder="Passwort"
+          placeholder={t("loginPage.password.placeholder")}
           className=""
           name="password"
           value={inputValue.password}
           required={true}
         />
-        <span onClick={() => setDisplayPassword(!displayPassword)}>Eye</span>
+        {!displayPassword ? (
+          <EyeClosed
+            onClick={() => setDisplayPassword(!displayPassword)}
+            data-testid={"eyeClosed"}
+          />
+        ) : (
+          <EyeOpen
+            onClick={() => setDisplayPassword(!displayPassword)}
+            data-testid={"eyeOpen"}
+          />
+        )}
       </div>
       <button type="submit" className={styles.submitButton}>
-        Absenden
+        {t("button.loginPage.confirm")}
       </button>
     </form>
   );
