@@ -46,8 +46,8 @@ describe("login page", () => {
 
     const usernameInput = await getLoginInputField(userNamePlaceholderText);
     const passwordInput = await getLoginInputField(passwordPlaceholderText);
-    userEvent.type(usernameInput, mockUserName);
-    userEvent.type(passwordInput, mockPassword);
+    await userEvent.type(usernameInput, mockUserName);
+    await userEvent.type(passwordInput, mockPassword);
 
     const buttonText = translateForTest("button.loginPage.confirm");
     const buttonElement = await screen.findByText(buttonText);
@@ -59,12 +59,12 @@ describe("login page", () => {
     render(<LoginPage />);
     const passwordPlaceholderText = translateForTest("loginPage.password");
     const passwordInput = await getLoginInputField(passwordPlaceholderText);
-    userEvent.type(passwordInput, mockPassword);
+    await userEvent.type(passwordInput, mockPassword);
 
     const eyeClosed = await screen.findByTestId("eyeClosed");
     expect(eyeClosed).toBeInTheDocument();
     expect(passwordInput).toHaveAttribute("type", "password");
-    userEvent.click(eyeClosed);
+    await userEvent.click(eyeClosed);
     const eyeOpen = await screen.findByTestId("eyeOpen");
     expect(eyeOpen).toBeInTheDocument();
 
