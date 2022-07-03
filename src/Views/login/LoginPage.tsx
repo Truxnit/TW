@@ -28,10 +28,10 @@ export const LoginPage: React.FC = () => {
 
   const form = (
     <form className={styles.loginForm} onSubmit={submitHandler}>
-      <div className={styles.inputContainer}>
-        <label htmlFor={"inputUsername"}>{t("loginPage.username")}:</label>
+      <div className={styles.loginInputContainer}>
+        <label htmlFor={"loginUserName"}>{t("loginPage.username")}:</label>
         <input
-          id={"inputUsername"}
+          id={"loginUserName"}
           type="text"
           onChange={(e) => handelInputChange(e)}
           placeholder={t("loginPage.username")}
@@ -41,10 +41,10 @@ export const LoginPage: React.FC = () => {
           required={true}
         />
       </div>
-      <div className={styles.inputContainer}>
-        <label htmlFor={"inputPassword"}>{t("loginPage.password")}:</label>
+      <div className={styles.loginInputContainer}>
+        <label htmlFor={"loginPassword"}>{t("loginPage.password")}:</label>
         <input
-          id={"inputPassword"}
+          id={"loginPassword"}
           type={displayPassword ? "text" : "password"}
           onChange={(e) => handelInputChange(e)}
           placeholder={t("loginPage.password")}
@@ -65,7 +65,7 @@ export const LoginPage: React.FC = () => {
           />
         )}
       </div>
-      <button type="submit" className={styles.submitButton}>
+      <button type="submit" className={styles.loginButton}>
         {t("button.loginPage.confirm")}
       </button>
     </form>

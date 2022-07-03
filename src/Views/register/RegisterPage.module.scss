@@ -1,0 +1,45 @@
+@import "/src/assets/scss/variables";
+@import "/src/assets/scss/mediaQueries";
+
+.registerInputContainer {
+  flex-direction: column;
+  display: flex;
+  position: relative;
+  margin: 1em 0 0;
+  &:first-child {
+    margin: 0;
+  }
+}
+
+.registerButton {
+  background-color: $green;
+}
+.cancelButton {
+  background-color: $red;
+}
+
+@media (min-width: 41em) {
+  .registerForm {
+    display: flex;
+    max-width: 60em;
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+  .registerInputContainer {
+    width: 100%;
+    max-width: 48.625%;
+    margin: 0 0 2em;
+    &:nth-child(odd) {
+      margin-right: 1em;
+    }
+  }
+  .registerButton {
+    margin-right: 1em;
+  }
+  .registerButton,
+  .cancelButton {
+    width: 100%;
+    max-width: 48.625%;
+  }
+}

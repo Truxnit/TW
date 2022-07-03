@@ -4,13 +4,14 @@
 
 body {
   margin: 0;
+  padding: 0;
   font-family: "Roboto", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: $temp15;
   line-height: 1.5;
   font-size: $text-font-size;
-  width: auto;
+  width: 100%;
 }
 
 code {
@@ -19,15 +20,61 @@ code {
 }
 
 #root {
-  position: relative;
   min-height: 100%;
   height: 100%;
-  padding: 0 1.25em;
+  padding: 1em 1.25em;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 section {
-  width: 100%;
   align-items: center;
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+}
+
+form {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: $white;
+  padding: 1.5em;
+  border-radius: 0.75em;
+  border: 1px solid $black;
+  font-size: 16px;
+  position: relative;
+}
+
+button {
+  width: 100%;
+  margin: 1em 0 0;
+  border-radius: 0.75em;
+  padding: 0.8em;
+  cursor: pointer;
+  background-color: $grey;
+  color: $white;
+  font-weight: $font-weight-heavy;
+  text-transform: uppercase;
+  font-size: $large-text-font-size;
+  line-height: 1em;
+  border: 2px solid $black;
+  &:hover {
+    background-color: $grey-light;
+    color: $black;
+  }
+}
+label {
+  font-weight: $font-weight-heavy;
+  margin-bottom: 0.4em;
+}
+input {
+  padding: 0.5em;
+  border-radius: 0.75em;
+  height: 1.75em;
+}
+.pageHeadline {
+  h2 {
+    text-align: center;
+    margin: 0.5em 0;
+  }
 }

@@ -1,56 +1,26 @@
 @import "/src/assets/scss/variables";
 
 .loginForm {
-  display: flex;
-  flex-direction: column;
-  background-color: $white;
-  padding: 1.5em;
-  width: 100%;
-  max-width: 20em;
-  border-radius: 0.75em;
-  border: 1px solid $black;
-  font-size: $large-text-font-size;
+  max-width: 25em;
 }
 
-.inputContainer {
+.loginInputContainer {
   display: flex;
   flex-direction: column;
   position: relative;
   margin: 1em 0 0;
-  &:first-child{
+  &:first-child {
     margin: 0;
   }
-  label {
-    font-weight: $font-weight-heavy;
-    margin-bottom: 0.4em;
-  }
-  input {
-    padding: 0.5em;
-    border-radius: 0.75em;
-    height: 1.75em;
-  }
   svg {
+    position: absolute;
     width: 1.5em;
     height: 1.5em;
-    transform: translate(18em, -2em);
+    bottom: 0.5em;
+    right: 0.25em;
   }
 }
 
-.submitButton {
-  width: 100%;
-  margin: 1em 0 0;
-  border-radius: 0.75em;
-  padding: 0.8em;
-  cursor: pointer;
-  background-color: $grey;
-  color: $white;
-  font-weight: $font-weight-heavy;
-  text-transform: uppercase;
-  font-size: $large-text-font-size;
-  line-height: 1em;
-  border: 2px solid $black;
-  &:hover {
-    background-color: $grey-light;
-    color: #333;
-  }
+.loginButton {
+  background-color: $green;
 }

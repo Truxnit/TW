@@ -1,11 +1,9 @@
-import React, { FormEvent, useState } from "react";
+import React, { FormEvent } from "react";
 import { RegisterPageLayout } from "src/Views/register/RegisterPageLayout";
 import { useTranslation } from "src/i18n";
 import { useDocumentTitle } from "src/utils/hooks/useDocumentTitle";
-import styles from "src/Views/login/LoginPage.module.scss";
-import { ReactComponent as EyeClosed } from "src/assets/images/svg/eye-close.svg";
-import { ReactComponent as EyeOpen } from "src/assets/images/svg/eye-open.svg";
 import { useForm } from "src/utils/hooks/useForm";
+import styles from "src/Views/register/RegisterPage.module.scss";
 
 export const RegisterPage: React.FC = () => {
   const { t } = useTranslation();
@@ -19,7 +17,6 @@ export const RegisterPage: React.FC = () => {
     username: "",
   });
 
-  const [displayPassword, setDisplayPassword] = useState<boolean>(false);
   const pageTitle = <h2>{t("registerPage.title")}</h2>;
 
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
@@ -33,16 +30,16 @@ export const RegisterPage: React.FC = () => {
     e.preventDefault();
     e.stopPropagation();
     clearInputValue();
-    setDisplayPassword(false);
+    //navigate to Main page
   };
 
   const registerForm = (
     <form
-      className={styles.loginForm}
+      className={styles.registerForm}
       onSubmit={submitHandler}
       onReset={resetHandler}
     >
-      <div className={styles.inputContainer}>
+      <div className={styles.registerInputContainer}>
         <label htmlFor={"registerFirstName"}>
           {t("registerPage.firstName")}:
         </label>
@@ -57,7 +54,7 @@ export const RegisterPage: React.FC = () => {
           required={true}
         />
       </div>
-      <div className={styles.inputContainer}>
+      <div className={styles.registerInputContainer}>
         <label htmlFor={"registerLastName"}>
           {t("registerPage.lastName")}:
         </label>
@@ -72,7 +69,7 @@ export const RegisterPage: React.FC = () => {
           required={true}
         />
       </div>
-      <div className={styles.inputContainer}>
+      <div className={styles.registerInputContainer}>
         <label htmlFor={"registerEMail"}>{t("registerPage.email")}:</label>
         <input
           id={"registerEMail"}
@@ -85,7 +82,7 @@ export const RegisterPage: React.FC = () => {
           required={true}
         />
       </div>
-      <div className={styles.inputContainer}>
+      <div className={styles.registerInputContainer}>
         <label htmlFor={"registerUserName"}>
           {t("registerPage.username")}:
         </label>
@@ -100,13 +97,13 @@ export const RegisterPage: React.FC = () => {
           required={true}
         />
       </div>
-      <div className={styles.inputContainer}>
+      <div className={styles.registerInputContainer}>
         <label htmlFor={"registerPassword"}>
           {t("registerPage.password")}:
         </label>
         <input
           id={"registerPassword"}
-          type={displayPassword ? "text" : "password"}
+          type={"password"}
           onChange={(e) => handelInputChange(e)}
           placeholder={t("registerPage.password")}
           className=""
@@ -114,19 +111,8 @@ export const RegisterPage: React.FC = () => {
           value={inputValue.password}
           required={true}
         />
-        {!displayPassword ? (
-          <EyeClosed
-            onClick={() => setDisplayPassword(!displayPassword)}
-            data-testid={"eyeClosed"}
-          />
-        ) : (
-          <EyeOpen
-            onClick={() => setDisplayPassword(!displayPassword)}
-            data-testid={"eyeOpen"}
-          />
-        )}
       </div>
-      <div className={styles.inputContainer}>
+      <div className={styles.registerInputContainer}>
         <label htmlFor={"registerRepeatPassword"}>
           {t("registerPage.repeatPassword")}:
         </label>
@@ -141,10 +127,10 @@ export const RegisterPage: React.FC = () => {
           required={true}
         />
       </div>
-      <button type="submit" className={styles.submitButton}>
+      <button type="submit" className={styles.registerButton}>
         {t("button.registerPage.confirm")}
       </button>
-      <button type="reset" className={styles.submitButton}>
+      <button type="reset" className={styles.cancelButton}>
         {t("button.registerPage.cancel")}
       </button>
     </form>

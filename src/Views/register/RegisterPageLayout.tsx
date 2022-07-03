@@ -9,9 +9,9 @@ export const RegisterPageLayout: React.FC<RegisterPageLayoutProps> = ({
   registerForm,
 }) => {
   return (
-    <div>
+    <section className={"pageHeadline"}>
       {title}
       {registerForm}
-    </div>
+    </section>
   );
 };

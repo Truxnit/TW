@@ -10,7 +10,7 @@ export const LoginPageLayout: React.FC<LoginPageLayoutProps> = ({
   loginForm,
 }) => {
   return (
-    <section>
+    <section className={"pageHeadline"}>
       {title}
       {loginForm}
     </section>
