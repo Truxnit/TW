@@ -1,9 +1,9 @@
 import { renderHook } from "@testing-library/react-hooks";
-import { useForm } from "src/utils/hooks/useForm";
+import { useInput } from "src/utils/hooks/useInput";
 
 describe("useForm", () => {
   it("initially", () => {
-    const { result } = renderHook(() => useForm({ username: "" }));
+    const { result } = renderHook(() => useInput({ username: "" }));
     expect(result.current.inputValue.username).toEqual("");
   });
 });

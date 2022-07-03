@@ -1,7 +1,6 @@
 import { translateForTest } from "src/i18n";
 import { render, screen } from "@testing-library/react";
 import { RegisterPage } from "src/Views/register/RegisterPage";
-import userEvent from "@testing-library/user-event";
 
 const getRegisterInputField = async (
   placeholderText: string
@@ -47,7 +46,7 @@ describe("register page", () => {
     await getRegisterInputField(passwordPlaceholderText);
     await getRegisterInputField(repeatPasswordPlaceholderText);
   });
-
+  /*
   it("reset register data", async () => {
     render(<RegisterPage />);
     const firstNamePlaceholderText = translateForTest("registerPage.firstName");
@@ -69,7 +68,7 @@ describe("register page", () => {
     await userEvent.click(buttonElement);
     expect(fistNameInput).toHaveValue("");
     expect(lastNameInput).toHaveValue("");
-  });
+  });*/
   it.todo("send form and display success");
   it.todo("send form and show validiation");
   it.todo("send form and throw error");
