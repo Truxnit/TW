@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import "src/assets/scss/styles.scss";
-import { LoginPage } from "./Views/login/LoginPage";
 import { initTranslations } from "src/i18n";
+import { RegisterPage } from "src/Views/register/RegisterPage";
 
 const mockApiReady: Promise<void> = Promise.resolve();
 
@@ -15,7 +15,8 @@ mockApiReady
   .then(() =>
     root.render(
       <React.StrictMode>
-        <LoginPage />
+        <RegisterPage />
+        {/*        <LoginPage />*/}
       </React.StrictMode>
     )
   );

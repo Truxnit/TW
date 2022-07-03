@@ -5,10 +5,11 @@ import styles from "src/Views/login/LoginPage.module.scss";
 import { useTranslation } from "src/i18n";
 import { ReactComponent as EyeClosed } from "src/assets/images/svg/eye-close.svg";
 import { ReactComponent as EyeOpen } from "src/assets/images/svg/eye-open.svg";
+import { useDocumentTitle } from "src/utils/hooks/useDocumentTitle";
 
 export const LoginPage: React.FC = () => {
   const { t } = useTranslation();
-  //need icon for display Password open Eye and close eyes svg or png???
+  useDocumentTitle(t("loginPage.title"));
   const [displayPassword, setDisplayPassword] = useState<boolean>(false);
   const { inputValue, handelInputChange } = useForm({
     password: "",
@@ -28,12 +29,12 @@ export const LoginPage: React.FC = () => {
   const form = (
     <form className={styles.loginForm} onSubmit={submitHandler}>
       <div className={styles.inputContainer}>
-        <label htmlFor={"inputUsername"}>Name:</label>
+        <label htmlFor={"inputUsername"}>{t("loginPage.username")}:</label>
         <input
           id={"inputUsername"}
           type="text"
           onChange={(e) => handelInputChange(e)}
-          placeholder={t("loginPage.username.placeholder")}
+          placeholder={t("loginPage.username")}
           className=""
           name="username"
           value={inputValue.username}
@@ -41,12 +42,12 @@ export const LoginPage: React.FC = () => {
         />
       </div>
       <div className={styles.inputContainer}>
-        <label htmlFor={"inputPassword"}>Passwort:</label>
+        <label htmlFor={"inputPassword"}>{t("loginPage.password")}:</label>
         <input
           id={"inputPassword"}
           type={displayPassword ? "text" : "password"}
           onChange={(e) => handelInputChange(e)}
-          placeholder={t("loginPage.password.placeholder")}
+          placeholder={t("loginPage.password")}
           className=""
           name="password"
           value={inputValue.password}

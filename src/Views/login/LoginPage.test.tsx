@@ -5,6 +5,7 @@ import userEvent from "@testing-library/user-event";
 
 const mockPassword = "testPass";
 const mockUserName = "testuser";
+
 const getLoginInputField = async (
   placeholderText: string
 ): Promise<HTMLElement> => {
@@ -14,32 +15,34 @@ const getLoginInputField = async (
 };
 
 describe("login page", () => {
+  it("displays the correct document title", async () => {
+    render(<LoginPage />);
+    const pageTitle = `Two Worlds P&P - ${translateForTest("loginPage.title")}`;
+    const titleTagText = document.title;
+    expect(titleTagText).toEqual(pageTitle);
+  });
+
   it("displays the login title", async () => {
     render(<LoginPage />);
-    const title = translateForTest("loginPage.title");
-    const titleElement = await screen.findByRole("heading", { name: title });
+    const pageTitle = translateForTest("loginPage.title");
+    const titleElement = await screen.findByRole("heading", {
+      level: 2,
+      name: pageTitle,
+    });
     expect(titleElement).toBeInTheDocument();
   });
   it("displays the input fields", async () => {
     render(<LoginPage />);
-    const userNamePlaceholderText = translateForTest(
-      "loginPage.username.placeholder"
-    );
-    const passwordPlaceholderText = translateForTest(
-      "loginPage.password.placeholder"
-    );
+    const userNamePlaceholderText = translateForTest("loginPage.username");
+    const passwordPlaceholderText = translateForTest("loginPage.password");
 
     await getLoginInputField(userNamePlaceholderText);
     await getLoginInputField(passwordPlaceholderText);
   });
   it("sends login data", async () => {
     render(<LoginPage />);
-    const userNamePlaceholderText = translateForTest(
-      "loginPage.username.placeholder"
-    );
-    const passwordPlaceholderText = translateForTest(
-      "loginPage.password.placeholder"
-    );
+    const userNamePlaceholderText = translateForTest("loginPage.username");
+    const passwordPlaceholderText = translateForTest("loginPage.password");
 
     const usernameInput = await getLoginInputField(userNamePlaceholderText);
     const passwordInput = await getLoginInputField(passwordPlaceholderText);
@@ -54,9 +57,7 @@ describe("login page", () => {
   });
   it("displays the password text after click on the eye", async () => {
     render(<LoginPage />);
-    const passwordPlaceholderText = translateForTest(
-      "loginPage.password.placeholder"
-    );
+    const passwordPlaceholderText = translateForTest("loginPage.password");
     const passwordInput = await getLoginInputField(passwordPlaceholderText);
     userEvent.type(passwordInput, mockPassword);
 
