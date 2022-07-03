@@ -1,5 +1,6 @@
 import { ChangeEvent, useState } from "react";
 //can be use for different forms, but should add more
+//InitialValue Generic???
 interface InitialValue {
   email?: string;
   firstName?: string;
