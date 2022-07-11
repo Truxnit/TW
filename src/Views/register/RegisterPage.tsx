@@ -4,11 +4,14 @@ import { useTranslation } from "src/i18n";
 import { useDocumentTitle } from "src/utils/hooks/useDocumentTitle";
 import styles from "src/Views/register/RegisterPage.module.scss";
 import { CustomFormInput } from "src/components/CustomFormInput/CustomFormInput";
-import { createInputValueObject, InputValueType } from "src/models/inputTypes";
+import { buildRegisterFormObject, InputValueType } from "src/models/inputTypes";
+import { useForm } from "src/utils/hooks/useForm";
 
-//Todo Reset
 export const RegisterPage: React.FC = () => {
   const { t } = useTranslation();
+  const { inputValue, handelInputChange, resetInputValue } = useForm(
+    buildRegisterFormObject()
+  );
   useDocumentTitle(t("registerPage.title"));
 
   const pageTitle = <h2>{t("registerPage.title")}</h2>;
@@ -20,10 +23,12 @@ export const RegisterPage: React.FC = () => {
     console.log("Hello: ", inputValue.username);
     console.log("Hello: ", inputValue.password);*/
   };
+
   const resetHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     e.stopPropagation();
     //navigate to Main page
+    resetInputValue();
   };
 
   const registerForm = (
@@ -36,7 +41,8 @@ export const RegisterPage: React.FC = () => {
         className={styles.registerInputContainer}
         labelText={t("registerPage.firstName")}
         inputName={InputValueType.FIRSTNAME}
-        inputValueObject={createInputValueObject({}, InputValueType.FIRSTNAME)}
+        inputValueObject={inputValue}
+        changeEvent={handelInputChange}
         inputType={"text"}
         placeholder={t("registerPage.firstName")}
       />
@@ -44,7 +50,8 @@ export const RegisterPage: React.FC = () => {
         className={styles.registerInputContainer}
         labelText={t("registerPage.lastName")}
         inputName={InputValueType.LASTNAME}
-        inputValueObject={createInputValueObject({}, InputValueType.LASTNAME)}
+        inputValueObject={inputValue}
+        changeEvent={handelInputChange}
         inputType={"text"}
         placeholder={t("registerPage.lastName")}
       />
@@ -52,7 +59,8 @@ export const RegisterPage: React.FC = () => {
         className={styles.registerInputContainer}
         labelText={t("registerPage.email")}
         inputName={InputValueType.EMAIL}
-        inputValueObject={createInputValueObject({}, InputValueType.EMAIL)}
+        inputValueObject={inputValue}
+        changeEvent={handelInputChange}
         inputType={"email"}
         placeholder={t("registerPage.email")}
       />
@@ -60,7 +68,8 @@ export const RegisterPage: React.FC = () => {
         className={styles.registerInputContainer}
         labelText={t("registerPage.username")}
         inputName={InputValueType.USERNAME}
-        inputValueObject={createInputValueObject({}, InputValueType.USERNAME)}
+        inputValueObject={inputValue}
+        changeEvent={handelInputChange}
         inputType={"text"}
         placeholder={t("registerPage.username")}
       />
@@ -68,7 +77,8 @@ export const RegisterPage: React.FC = () => {
         className={styles.registerInputContainer}
         labelText={t("registerPage.password")}
         inputName={InputValueType.PASSWORD}
-        inputValueObject={createInputValueObject({}, InputValueType.PASSWORD)}
+        inputValueObject={inputValue}
+        changeEvent={handelInputChange}
         inputType={"password"}
         placeholder={t("registerPage.password")}
       />
@@ -76,10 +86,8 @@ export const RegisterPage: React.FC = () => {
         className={styles.registerInputContainer}
         labelText={t("registerPage.repeatPassword")}
         inputName={InputValueType.REPEATPASSWORD}
-        inputValueObject={createInputValueObject(
-          {},
-          InputValueType.REPEATPASSWORD
-        )}
+        inputValueObject={inputValue}
+        changeEvent={handelInputChange}
         inputType={"password"}
         placeholder={t("registerPage.repeatPassword")}
       />

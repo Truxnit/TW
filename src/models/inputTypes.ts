@@ -10,31 +10,21 @@ export enum InputValueType {
   EMAIL = "email",
   REPEATPASSWORD = "repeatPassword",
 }
-const objectAttributes = {
-  value: "",
-  writable: true,
-};
-export const createInputValueObject = (
-  inputValueObject: InputValueObject = {},
-  propertyName: InputValueType
-): InputValueObject => {
-  return Object.defineProperty(
-    inputValueObject,
-    propertyName,
-    objectAttributes
-  );
-};
 
 export const buildRegisterFormObject = () => {
-  let inputObject = createInputValueObject({}, InputValueType.FIRSTNAME);
-  inputObject = createInputValueObject(inputObject, InputValueType.LASTNAME);
-  inputObject = createInputValueObject(inputObject, InputValueType.EMAIL);
-  inputObject = createInputValueObject(inputObject, InputValueType.USERNAME);
-  inputObject = createInputValueObject(inputObject, InputValueType.PASSWORD);
-  return createInputValueObject(inputObject, InputValueType.REPEATPASSWORD);
+  return {
+    [InputValueType.FIRSTNAME]: "",
+    [InputValueType.LASTNAME]: "",
+    [InputValueType.EMAIL]: "",
+    [InputValueType.USERNAME]: "",
+    [InputValueType.PASSWORD]: "",
+    [InputValueType.REPEATPASSWORD]: "",
+  };
 };
 
 export const buildLoginFormObject = () => {
-  const inputObject = createInputValueObject({}, InputValueType.USERNAME);
-  return createInputValueObject(inputObject, InputValueType.PASSWORD);
+  return {
+    [InputValueType.USERNAME]: "",
+    [InputValueType.PASSWORD]: "",
+  };
 };

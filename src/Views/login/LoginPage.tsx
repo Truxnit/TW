@@ -6,17 +6,14 @@ import { ReactComponent as EyeClosed } from "src/assets/images/svg/eye-close.svg
 import { ReactComponent as EyeOpen } from "src/assets/images/svg/eye-open.svg";
 import { useDocumentTitle } from "src/utils/hooks/useDocumentTitle";
 import { CustomFormInput } from "src/components/CustomFormInput/CustomFormInput";
-import {
-  buildLoginFormObject,
-  InputValueObject,
-  InputValueType,
-} from "src/models/inputTypes";
+import { buildLoginFormObject, InputValueType } from "src/models/inputTypes";
+import { useForm } from "src/utils/hooks/useForm";
 
 export const LoginPage: React.FC = () => {
   const { t } = useTranslation();
   useDocumentTitle(t("loginPage.title"));
   const [displayPassword, setDisplayPassword] = useState<boolean>(false);
-  const [inputValueObject] = useState<InputValueObject>(buildLoginFormObject());
+  const { inputValue, handelInputChange } = useForm(buildLoginFormObject());
 
   const title = <h2>{t("loginPage.title")}</h2>;
 
@@ -54,8 +51,9 @@ export const LoginPage: React.FC = () => {
         className={styles.loginInputContainer}
         labelText={t("loginPage.username")}
         inputName={InputValueType.USERNAME}
-        inputValueObject={inputValueObject}
+        inputValueObject={inputValue}
         inputType={"text"}
+        changeEvent={handelInputChange}
         placeholder={t("loginPage.username")}
       />
       <CustomFormInput
@@ -64,7 +62,8 @@ export const LoginPage: React.FC = () => {
         inputIcon={passwordEyeIcon}
         inputName={InputValueType.PASSWORD}
         inputType={displayPassword ? "text" : "password"}
-        inputValueObject={inputValueObject}
+        inputValueObject={inputValue}
+        changeEvent={handelInputChange}
         placeholder={t("loginPage.password")}
       />
       <button type="submit" className={styles.loginButton}>

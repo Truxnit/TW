@@ -1,10 +1,9 @@
-import React, { ReactNode } from "react";
+import React, { ChangeEvent, ReactNode } from "react";
 import {
   InputType,
   InputValueObject,
   InputValueType,
 } from "src/models/inputTypes";
-import { useInput } from "src/utils/hooks/useInput";
 
 interface CustomFormInputProps {
   inputType: InputType;
@@ -15,6 +14,7 @@ interface CustomFormInputProps {
   labelText?: string;
   className?: string;
   isRequired?: boolean;
+  changeEvent?: (changeEvent: ChangeEvent<HTMLInputElement>) => void;
 }
 export const CustomFormInput: React.FC<CustomFormInputProps> = ({
   className,
@@ -25,13 +25,18 @@ export const CustomFormInput: React.FC<CustomFormInputProps> = ({
   isRequired = false,
   inputIcon,
   labelText,
+  changeEvent,
 }) => {
-  const { inputValue, handelInputChange } = useInput(inputValueObject);
-
   const withLabel = labelText && labelText.length > 0;
   const inputLabel = withLabel && (
     <label htmlFor={placeholder}>{labelText}:</label>
   );
+
+  const changeHandler = (event: ChangeEvent<HTMLInputElement>) => {
+    if (changeEvent) {
+      changeEvent(event);
+    }
+  };
 
   return (
     <div className={className}>
@@ -39,10 +44,10 @@ export const CustomFormInput: React.FC<CustomFormInputProps> = ({
       <input
         id={placeholder}
         type={inputType}
-        onChange={(event) => handelInputChange(event)}
+        onChange={(event) => changeHandler(event)}
         placeholder={placeholder}
         name={inputName}
-        value={inputValue[inputName]}
+        value={inputValueObject[inputName]}
         required={isRequired}
       />
       {inputIcon}
