@@ -4,6 +4,7 @@ import "src/assets/scss/styles.scss";
 import { initTranslations } from "src/i18n";
 import { RegisterPage } from "src/Views/register/RegisterPage";
 import { LoginPage } from "src/Views/login/LoginPage";
+import { Header } from "src/components/Header/Header";
 
 const mockApiReady: Promise<void> = Promise.resolve();
 
@@ -16,6 +17,7 @@ mockApiReady
   .then(() =>
     root.render(
       <React.StrictMode>
+        <Header />
         <RegisterPage />
         <LoginPage />
       </React.StrictMode>
