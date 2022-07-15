@@ -2,6 +2,7 @@ export const DefaultDe = {
   "button.loginPage.confirm": "Absenden",
   "button.registerPage.cancel": "Abbruch",
   "button.registerPage.confirm": "Registrieren",
+  "footer.copyright": "\u00A9 Truxnit",
   "header.title": "Two Worlds Rollenspiel",
   "loginPage.password": "Passwort",
   "loginPage.title": "Einloggen",

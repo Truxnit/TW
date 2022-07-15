@@ -5,6 +5,7 @@ import { initTranslations } from "src/i18n";
 import { RegisterPage } from "src/Views/register/RegisterPage";
 import { LoginPage } from "src/Views/login/LoginPage";
 import { Header } from "src/components/Header/Header";
+import { Footer } from "src/components/Footer/Footer";
 
 const mockApiReady: Promise<void> = Promise.resolve();
 
@@ -20,6 +21,7 @@ mockApiReady
         <Header />
         <RegisterPage />
         <LoginPage />
+        <Footer />
       </React.StrictMode>
     )
   );
