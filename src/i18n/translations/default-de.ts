@@ -7,6 +7,8 @@ export const DefaultDe = {
   "loginPage.password": "Passwort",
   "loginPage.title": "Einloggen",
   "loginPage.username": "Nutzername",
+  "notFoundPage.button": "Zur Startseite",
+  "notFoundPage.title.html": "<strong>404</strong><br/>Seite nicht gefunden!",
   "registerPage.email": "E-Mail",
   "registerPage.firstName": "Vorname",
   "registerPage.lastName": "Nachname",

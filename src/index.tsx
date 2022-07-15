@@ -2,10 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import "src/assets/scss/styles.scss";
 import { initTranslations } from "src/i18n";
-import { RegisterPage } from "src/Views/register/RegisterPage";
-import { LoginPage } from "src/Views/login/LoginPage";
-import { Header } from "src/components/Header/Header";
-import { Footer } from "src/components/Footer/Footer";
+import { AppRoutes } from "src/routes";
 
 const mockApiReady: Promise<void> = Promise.resolve();
 
@@ -18,10 +15,7 @@ mockApiReady
   .then(() =>
     root.render(
       <React.StrictMode>
-        <Header />
-        <RegisterPage />
-        <LoginPage />
-        <Footer />
+        <AppRoutes />
       </React.StrictMode>
     )
   );
