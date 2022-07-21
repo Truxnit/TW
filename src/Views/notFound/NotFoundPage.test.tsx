@@ -14,9 +14,6 @@ const renderNotFoundPage = () => {
 };
 
 describe("File Not Found page", () => {
-  beforeEach(() => {
-    renderNotFoundPage();
-  });
   it("display the title", async () => {
     renderNotFoundPage();
     const title = translateForTest("notFoundPage.title.html");
