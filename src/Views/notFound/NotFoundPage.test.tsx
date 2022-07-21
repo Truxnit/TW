@@ -9,9 +9,13 @@ import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { resolveRoute } from "src/utils/resolveRoute";
 
+const renderNotFoundPage = () => {
+  renderWithRouter([{ element: <NotFoundPage /> }]);
+};
+
 describe("File Not Found page", () => {
   beforeEach(() => {
-    renderWithRouter([{ element: <NotFoundPage /> }]);
+    renderNotFoundPage();
   });
   it("display the title", async () => {
     const title = translateForTest("notFoundPage.title.html");
