@@ -18,6 +18,7 @@ describe("File Not Found page", () => {
     renderNotFoundPage();
   });
   it("display the title", async () => {
+    renderNotFoundPage();
     const title = translateForTest("notFoundPage.title.html");
 
     const titleElement = screen.getByRole("heading");
@@ -25,6 +26,7 @@ describe("File Not Found page", () => {
   });
 
   it("navigate to main after click the button", async () => {
+    renderNotFoundPage();
     const button = translateForTest("notFoundPage.button");
 
     const buttonElement = screen.getByRole("button", { name: button });
