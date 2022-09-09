@@ -9,6 +9,7 @@ interface FormResult {
 
 export const useForm = (initialValue: InputValueObject = {}): FormResult => {
   const [inputValue, setInputValue] = useState<InputValueObject>(initialValue);
+  //const [errors, setErrors] = useState<InputValueObject>(initialValue);
 
   const handelInputChange = (e: ChangeEvent<HTMLInputElement>): void => {
     e.persist();
