@@ -7,7 +7,7 @@ import {
 export const validateRegister = (
   inputValues: InputValueObject
 ): InputValueObject => {
-  let errors = buildRegisterFormObject();
+  const errors = buildRegisterFormObject();
   errors[InputValueType.EMAIL] = emailValidation(
     inputValues[InputValueType.EMAIL]
   );

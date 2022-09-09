@@ -54,17 +54,17 @@ describe("Repeated password validation", () => {
     const errorMessage = repeatPasswordValidation("password10", "password10");
     expect(errorMessage).toEqual("");
   });
-  it("returns 'Password needs to be more than 10 characters!' if given password shorter than 10 characters", () => {
+  it("returns 'Repeated password must be the same as password!' if given password not equal to repeated password", () => {
     const errorMessage = repeatPasswordValidation("password10", "password11");
     expect(errorMessage).toEqual(
       "Repeated password must be the same as password!"
     );
   });
-  it("returns 'Password address is required!' if given password string is emtpy", () => {
+  it("returns 'Password address is required!' if given password string is emtpy and repeated password given", () => {
     const errorMessage = repeatPasswordValidation("", "password10");
     expect(errorMessage).toEqual("Password is required!");
   });
-  it("returns 'Password address is required!' if given password string is emtpy", () => {
+  it("returns 'Repeated password is required!' if password is given but repeated password is empty", () => {
     const errorMessage = repeatPasswordValidation("password10", "");
     expect(errorMessage).toEqual("Repeated password is required!");
   });
