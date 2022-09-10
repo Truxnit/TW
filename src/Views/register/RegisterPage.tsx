@@ -1,17 +1,24 @@
-import React, { FormEvent } from "react";
+import React, { FormEvent, useState } from "react";
 import { RegisterPageLayout } from "src/Views/register/RegisterPageLayout";
 import { useTranslation } from "src/i18n";
 import { useDocumentTitle } from "src/utils/hooks/useDocumentTitle";
 import styles from "src/Views/register/RegisterPage.module.scss";
 import { CustomFormInput } from "src/components/CustomFormInput/CustomFormInput";
-import { buildRegisterFormObject, InputValueType } from "src/models/inputTypes";
+import {
+  buildRegisterFormObject,
+  InputValueObject,
+  InputValueType,
+} from "src/models/inputTypes";
 import { useForm } from "src/utils/hooks/useForm";
+import { validateRegister } from "src/utils/validation/formValidation";
 
 export const RegisterPage: React.FC = () => {
   const { t } = useTranslation();
   const { inputValue, handelInputChange, resetInputValue } = useForm(
     buildRegisterFormObject()
   );
+  const [errors, setErrors] = useState<InputValueObject | null>(null);
+
   useDocumentTitle(t("registerPage.title"));
 
   const pageTitle = <h2>{t("registerPage.title")}</h2>;
@@ -19,9 +26,19 @@ export const RegisterPage: React.FC = () => {
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     e.stopPropagation();
-    /*    console.log("Hello");
-    console.log("Hello: ", inputValue.username);
-    console.log("Hello: ", inputValue.password);*/
+    setErrors(null);
+    const errors = validateRegister(inputValue);
+    if (
+      errors[InputValueType.EMAIL] ||
+      errors[InputValueType.USERNAME] ||
+      errors[InputValueType.PASSWORD] ||
+      errors[InputValueType.REPEATPASSWORD]
+    ) {
+      setErrors(errors);
+    } else {
+      // call endpoint for register
+      //success navigate to main page
+    }
   };
 
   const resetHandler = (e: FormEvent<HTMLFormElement>) => {
@@ -63,6 +80,7 @@ export const RegisterPage: React.FC = () => {
         changeEvent={handelInputChange}
         inputType={"email"}
         placeholder={t("registerPage.email")}
+        errorMessage={errors && errors[InputValueType.EMAIL]}
       />
       <CustomFormInput
         className={styles.registerInputContainer}
@@ -72,6 +90,7 @@ export const RegisterPage: React.FC = () => {
         changeEvent={handelInputChange}
         inputType={"text"}
         placeholder={t("registerPage.username")}
+        errorMessage={errors && errors[InputValueType.USERNAME]}
       />
       <CustomFormInput
         className={styles.registerInputContainer}
@@ -81,6 +100,7 @@ export const RegisterPage: React.FC = () => {
         changeEvent={handelInputChange}
         inputType={"password"}
         placeholder={t("registerPage.password")}
+        errorMessage={errors && errors[InputValueType.PASSWORD]}
       />
       <CustomFormInput
         className={styles.registerInputContainer}
@@ -90,6 +110,7 @@ export const RegisterPage: React.FC = () => {
         changeEvent={handelInputChange}
         inputType={"password"}
         placeholder={t("registerPage.repeatPassword")}
+        errorMessage={errors && errors[InputValueType.REPEATPASSWORD]}
       />
       <button type="submit" className={styles.registerButton}>
         {t("button.registerPage.confirm")}

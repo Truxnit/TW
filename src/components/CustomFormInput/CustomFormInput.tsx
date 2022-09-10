@@ -4,6 +4,7 @@ import {
   InputValueObject,
   InputValueType,
 } from "src/models/inputTypes";
+import styles from "src/components/CustomFormInput/CustomFormInput.module.scss";
 
 interface CustomFormInputProps {
   inputType: InputType;
@@ -15,6 +16,7 @@ interface CustomFormInputProps {
   className?: string;
   isRequired?: boolean;
   changeEvent?: (changeEvent: ChangeEvent<HTMLInputElement>) => void;
+  errorMessage?: string | null;
 }
 export const CustomFormInput: React.FC<CustomFormInputProps> = ({
   className,
@@ -26,6 +28,7 @@ export const CustomFormInput: React.FC<CustomFormInputProps> = ({
   inputIcon,
   labelText,
   changeEvent,
+  errorMessage,
 }) => {
   const withLabel = labelText && labelText.length > 0;
   const inputLabel = withLabel && (
@@ -38,10 +41,15 @@ export const CustomFormInput: React.FC<CustomFormInputProps> = ({
     }
   };
 
+  const isError = errorMessage && errorMessage.length > 0;
+  const error = isError && (
+    <p className={styles.errorMessage}>{errorMessage}</p>
+  );
   return (
     <div className={className}>
       {inputLabel}
       <input
+        className={isError ? styles.inputError : ""}
         id={placeholder}
         type={inputType}
         onChange={(event) => changeHandler(event)}
@@ -51,6 +59,7 @@ export const CustomFormInput: React.FC<CustomFormInputProps> = ({
         required={isRequired}
       />
       {inputIcon}
+      {error}
     </div>
   );
 };

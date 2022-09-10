@@ -8,17 +8,21 @@ export const validateRegister = (
   inputValues: InputValueObject
 ): InputValueObject => {
   const errors = buildRegisterFormObject();
+
   errors[InputValueType.EMAIL] = emailValidation(
     inputValues[InputValueType.EMAIL]
   );
-
+  errors[InputValueType.USERNAME] = usernameValidation(
+    inputValues[InputValueType.USERNAME]
+  );
   errors[InputValueType.PASSWORD] = passwordValidation(
     inputValues[InputValueType.PASSWORD]
   );
-  errors[InputValueType.PASSWORD] = repeatPasswordValidation(
+  errors[InputValueType.REPEATPASSWORD] = repeatPasswordValidation(
     inputValues[InputValueType.PASSWORD],
     inputValues[InputValueType.REPEATPASSWORD]
   );
+
   return errors;
 };
 
@@ -26,12 +30,18 @@ export const emailValidation = (value: string): string => {
   if (!value) {
     return "Email address is required!";
   }
-  if (!new RegExp("^\\S+@\\S+\\.\\S+", "i").test(value)) {
+  if (!new RegExp("^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$", "i").test(value)) {
     return "Input is not a valid email address!";
   }
   return "";
 };
 
+export const usernameValidation = (value: string): string => {
+  if (!value) {
+    return "Username is required!";
+  }
+  return "";
+};
 export const passwordValidation = (value: string): string => {
   if (!value) {
     return "Password is required!";
