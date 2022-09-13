@@ -77,8 +77,16 @@ label {
 }
 input {
   padding: 0.5em;
-  border-radius: 0.75em;
+  border: none;
+  outline: none;
+  border-bottom: 2px solid $grey;
   height: 1.75em;
+  cursor: text;
+  &:focus, &:hover, &:active &:focus-visible{
+    border: none;
+    outline: none;
+    border-bottom: 2px solid lightgreen;
+  }
 }
 .pageHeadline {
   h2 {

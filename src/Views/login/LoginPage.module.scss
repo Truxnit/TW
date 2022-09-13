@@ -9,6 +9,8 @@
   flex-direction: column;
   position: relative;
   margin: 1em 0 0;
+  padding-bottom: 2em;
+
   &:first-child {
     margin: 0;
   }
@@ -16,7 +18,7 @@
     position: absolute;
     width: 1.5em;
     height: 1.5em;
-    bottom: 0.5em;
+    bottom: 2.5em;
     right: 0.25em;
   }
 }
