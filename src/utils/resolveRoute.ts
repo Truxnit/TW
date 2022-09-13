@@ -25,12 +25,12 @@ export const resolveRoute: ResolveRouteWithParam & ResolveRouteWithoutParam = (
     return pattern;
   }
   return pattern.replace(/:(\w+)/g, (completeMatch, param) => {
-    const replacment = params[param];
-    if (replacment == null) {
+    const replacement = params[param];
+    if (replacement == null) {
       throw new Error(
         `No parameter "${param}" provided for pattern "${pattern}"`
       );
     }
-    return String(replacment);
+    return String(replacement);
   });
 };
