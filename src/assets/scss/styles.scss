@@ -88,6 +88,20 @@ input {
     border-bottom: 2px solid lightgreen;
   }
 }
+
+.inputError {
+  border-bottom: 2px solid red;
+}
+
+
+.errorMessage {
+  font-size: $small-text-font-size;
+  position: absolute;
+  color: red;
+  bottom: 0.7em;
+  left: 0.35em;
+}
+
 .pageHeadline {
   h2 {
     text-align: center;

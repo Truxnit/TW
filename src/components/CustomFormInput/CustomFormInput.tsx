@@ -4,7 +4,6 @@ import {
   InputValueObject,
   InputValueType,
 } from "src/models/inputTypes";
-import styles from "src/components/CustomFormInput/CustomFormInput.module.scss";
 
 interface CustomFormInputProps {
   inputType: InputType;
@@ -42,14 +41,12 @@ export const CustomFormInput: React.FC<CustomFormInputProps> = ({
   };
 
   const isError = errorMessage && errorMessage.length > 0;
-  const error = isError && (
-    <p className={styles.errorMessage}>{errorMessage}</p>
-  );
+  const error = isError && <p className={"errorMessage"}>{errorMessage}</p>;
   return (
-    <div className={className}>
+    <div className={`${className}`}>
       {inputLabel}
       <input
-        className={isError ? styles.inputError : ""}
+        className={isError ? "inputError" : ""}
         id={placeholder}
         type={inputType}
         onChange={(event) => changeHandler(event)}
