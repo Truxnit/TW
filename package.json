@@ -11,6 +11,8 @@
     "@types/node": "^18.7.17",
     "@types/react": "^18.0.20",
     "@types/react-dom": "^18.0.6",
+    "axios": "^0.27.2",
+    "axios-retry": "^3.3.1",
     "history": "^5.3.0",
     "i18next": "^21.9.1",
     "jwt-decode": "^3.1.2",
@@ -32,7 +34,8 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "start-storybook -s public",
-    "lint": "eslint --max-warnings 0 -c .eslintrc.json ./src/**/*.{tsx,ts} src/*.{tsx,ts}"
+    "lint": "eslint --max-warnings 0 -c .eslintrc.json ./src/**/*.{tsx,ts} src/*.{tsx,ts}",
+    "gen-api": "./scripts/build-openapi.sh"
   },
   "eslintConfig": {
     "extends": [
@@ -62,6 +65,11 @@
     "@storybook/preset-create-react-app": "^4.1.2",
     "@storybook/react": "^6.5.11",
     "js-yaml": "^4.1.0",
+    "json-refs": "^3.0.15",
+    "msw": "^0.47.3",
     "openapi-client-axios-typegen": "^5.0.2"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }
