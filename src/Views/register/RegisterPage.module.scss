@@ -9,6 +9,10 @@
   &:first-child {
     margin: 0;
   }
+  p {
+    bottom: -2em;
+    left: 0.5em;
+  }
 }
 
 .registerButton {
