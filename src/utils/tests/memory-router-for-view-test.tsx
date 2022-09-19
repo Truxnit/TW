@@ -2,6 +2,7 @@ import React, { ReactElement, ReactNode, useEffect } from "react";
 import { render, RenderResult } from "@testing-library/react";
 import { InitialEntry, Location } from "history";
 import { MemoryRouter, Route, Routes, useLocation } from "react-router-dom";
+import { TwoWorldsRoutes } from "src/utils/routing/resolveRoute";
 
 let currentLocation: Location | null = null;
 
@@ -22,7 +23,7 @@ export const expectCurrentUrlPathToBe = (expectedPath: string): void => {
 };
 
 interface CustomRoute {
-  path?: string; //| TwoWorldsRoutes;
+  path?: string | TwoWorldsRoutes;
   element: ReactElement;
 }
 

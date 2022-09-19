@@ -34,7 +34,7 @@ section {
   box-sizing: border-box;
 }
 
-footer{
+footer {
   display: flex;
   padding: 1.25rem;
   flex-direction: column;
@@ -82,7 +82,8 @@ input {
   border-bottom: 2px solid $grey;
   height: 1.75em;
   cursor: text;
-  &:focus, &:hover, &:active &:focus-visible{
+  &:focus,
+  &:active, &:focus-visible {
     border: none;
     outline: none;
     border-bottom: 2px solid lightgreen;
@@ -92,7 +93,6 @@ input {
 .inputError {
   border-bottom: 2px solid red;
 }
-
 
 .errorMessage {
   font-size: $small-text-font-size;

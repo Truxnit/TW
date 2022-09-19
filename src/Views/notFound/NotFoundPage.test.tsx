@@ -7,7 +7,7 @@ import { translateForTest } from "src/i18n";
 import { NotFoundPage } from "src/Views/notFound/NotFoundPage";
 import { screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
-import { resolveRoute } from "src/utils/resolveRoute";
+import { resolveRoute } from "src/utils/routing/resolveRoute";
 
 const renderNotFoundPage = () => {
   renderWithRouter([{ element: <NotFoundPage /> }]);

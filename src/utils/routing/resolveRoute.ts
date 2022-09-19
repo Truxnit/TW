@@ -1,19 +1,17 @@
-export type TwoWorldsRoutesWithoutParams = "/" | "/login" | "/register";
+export type RoutesWithoutParams = "/" | "/login" | "/register";
 
-interface TwoWorldsRoutesWithParams {
+interface RoutesWithParams {
   "/nsc/:nation/:gender": "nation" | "gender";
 }
 
-export type TwoWorldsRoutes =
-  | TwoWorldsRoutesWithoutParams
-  | keyof TwoWorldsRoutesWithParams;
+export type TwoWorldsRoutes = RoutesWithoutParams | keyof RoutesWithParams;
 
-type ResolveRouteWithParam = <T extends keyof TwoWorldsRoutesWithParams>(
+type ResolveRouteWithParam = <T extends keyof RoutesWithParams>(
   pattern: T,
-  params: Record<TwoWorldsRoutesWithParams[T], string | number>
+  params: Record<RoutesWithParams[T], string | number>
 ) => string;
 
-type ResolveRouteWithoutParam = <T extends TwoWorldsRoutesWithoutParams>(
+type ResolveRouteWithoutParam = <T extends RoutesWithoutParams>(
   pattern: T
 ) => string;
 

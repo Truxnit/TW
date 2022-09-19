@@ -13,14 +13,15 @@ import {
 } from "src/models/inputTypes";
 import { useForm } from "src/utils/hooks/useForm";
 import { validateRegister } from "src/utils/validation/formValidation";
+import { useNavigate } from "react-router-dom";
 
 export const LoginPage: React.FC = () => {
   const { t } = useTranslation();
+  const navigate = useNavigate();
   useDocumentTitle(t("loginPage.title"));
   const [displayPassword, setDisplayPassword] = useState<boolean>(false);
   const { inputValue, handelInputChange } = useForm(buildLoginFormObject());
   const [errors, setErrors] = useState<InputValueObject | null>(null);
-  const title = <h2>{t("loginPage.title")}</h2>;
 
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -32,6 +33,7 @@ export const LoginPage: React.FC = () => {
     } else {
       // call endpoint for register
       //success navigate to main page
+      navigate("/");
     }
     /*
  Here need validation
@@ -44,6 +46,8 @@ export const LoginPage: React.FC = () => {
 
     console.log(username.value, password.value);*/
   };
+
+  const title = <h2>{t("loginPage.title")}</h2>;
 
   const passwordEyeIcon = !displayPassword ? (
     <EyeClosed

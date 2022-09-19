@@ -1,7 +1,7 @@
 import React from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { useTranslation } from "src/i18n";
-import { resolveRoute } from "src/utils/resolveRoute";
+import { resolveRoute } from "src/utils/routing/resolveRoute";
 import { NotFoundPageLayout } from "src/Views/notFound/NotFoundPageLayout";
 
 export const NotFoundPage: React.FC = () => {
