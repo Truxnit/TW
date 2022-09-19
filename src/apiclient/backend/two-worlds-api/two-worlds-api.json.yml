@@ -1,0 +1,173 @@
+openapi: 3.0.2
+info:
+  title: Two Worlds service API
+  description: P&P Api
+  version: 0.0.1
+paths:
+  /docs:
+    get:
+      tags:
+        - utils
+      summary: Openapi Ui
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+      operationId: Openapi_UI_docs_get
+  /healthcheck/:
+    get:
+      tags:
+        - utils
+      summary: Health Check
+      description: Check health of the service.
+      responses:
+        '200':
+          content:
+            application/json:
+              schema: {}
+          description: Successful Response
+      operationId: Health_check_healthcheck__get
+  /v1/login/:
+    post:
+      tags:
+        - authentication
+      summary: Login
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CredentialsRequest'
+        required: true
+      parameters:
+        - name: bindings
+          in: query
+          required: false
+          schema:
+            title: Bindings
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginTokenResponse'
+          description: Successful Response
+        '401':
+          description: Unauthorized
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      operationId: login
+  /v1/refreshToken/:
+    post:
+      tags:
+        - authentication
+      summary: refresh token
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                refresh_token:
+                  title: refresh token
+                  type: string
+              required:
+                - refresh_token
+              type: object
+        required: true
+      parameters:
+        - name: bindings
+          in: query
+          required: false
+          schema:
+            title: Bindings
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AccessTokenResponse'
+                nullable: 'true'
+          description: Successful Response
+        '401':
+          description: Unauthorized
+        '422':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+          description: Validation Error
+      operationId: refreshToken
+components:
+  schemas:
+    AccessTokenResponse:
+      properties:
+        access_token:
+          title: Access Token
+          type: string
+      required:
+        - access_token
+      title: LoginTokenResponse
+      type: object
+    CredentialsRequest:
+      properties:
+        password:
+          title: Password
+          type: string
+        username:
+          title: Username
+          type: string
+      required:
+        - username
+        - password
+      title: CredentialsRequest
+      type: object
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          title: Detail
+          type: array
+      title: HTTPValidationError
+      type: object
+    LoginTokenResponse:
+      properties:
+        access_token:
+          title: Access Token
+          type: string
+        refresh_token:
+          title: Refresh Token
+          type: string
+        token_type:
+          title: Token Type
+          type: string
+      required:
+        - access_token
+        - refresh_token
+        - token_type
+      title: LoginTokenResponse
+      type: object
+    ValidationError:
+      properties:
+        loc:
+          items:
+            type: string
+          title: Location
+          type: array
+        msg:
+          title: Message
+          type: string
+        type:
+          title: Error Type
+          type: string
+      required:
+        - loc
+        - msg
+        - type
+      title: ValidationError
+      type: object
