@@ -5,7 +5,7 @@ import userEvent from "@testing-library/user-event";
 import { renderWithRouter } from "src/utils/tests/memory-router-for-view-test";
 
 const mockPassword = "testPass";
-const mockUserName = "testuser";
+const mockUserName = "testuser10";
 
 const getLoginInputField = async (
   placeholderText: string
@@ -77,5 +77,37 @@ describe("login page", () => {
     expect(passwordInput).toHaveAttribute("type", "text");
   });
 
-  it.todo("test validation");
+  it("displays validation text if username  and Password is empty", async () => {
+    renderLoginPage();
+
+    const buttonText = translateForTest("button.loginPage.confirm");
+    const buttonElement = await screen.findByText(buttonText);
+    await userEvent.click(buttonElement);
+
+    const userNameValidationMessage = screen.getByText("Username is required!");
+    const passwordValidationMessage = screen.getByText("Password is required!");
+
+    expect(userNameValidationMessage).toBeInTheDocument();
+    expect(passwordValidationMessage).toBeInTheDocument();
+  });
+  it("displays validation text if password < 10 ", async () => {
+    renderLoginPage();
+    const userNamePlaceholderText = translateForTest("loginPage.username");
+    const passwordPlaceholderText = translateForTest("loginPage.password");
+
+    const usernameInput = await getLoginInputField(userNamePlaceholderText);
+    const passwordInput = await getLoginInputField(passwordPlaceholderText);
+    await userEvent.type(usernameInput, mockUserName);
+    await userEvent.type(passwordInput, "test");
+
+    const buttonText = translateForTest("button.loginPage.confirm");
+    const buttonElement = await screen.findByText(buttonText);
+    await userEvent.click(buttonElement);
+
+    const passwordValidationMessage = screen.getByText(
+      "Password needs to be more than 10 characters!"
+    );
+
+    expect(passwordValidationMessage).toBeInTheDocument();
+  });
 });

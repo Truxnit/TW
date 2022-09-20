@@ -70,6 +70,6 @@ describe("register page", () => {
     expect(lastNameInput).toHaveValue("");
   });*/
   it.todo("send form and display success");
-  it.todo("send form and show validiation");
+  it.todo("send form and show validation");
   it.todo("send form and throw error");
 });
