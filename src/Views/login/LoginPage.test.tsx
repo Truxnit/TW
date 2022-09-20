@@ -90,7 +90,7 @@ describe("login page", () => {
     expect(userNameValidationMessage).toBeInTheDocument();
     expect(passwordValidationMessage).toBeInTheDocument();
   });
-  it("displays validation text if password < 10 ", async () => {
+  it("displays validation text if password < 10", async () => {
     renderLoginPage();
     const userNamePlaceholderText = translateForTest("loginPage.username");
     const passwordPlaceholderText = translateForTest("loginPage.password");
