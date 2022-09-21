@@ -63,8 +63,10 @@
     "@storybook/node-logger": "^6.5.11",
     "@storybook/preset-create-react-app": "^4.1.2",
     "@storybook/react": "^6.5.11",
+    "@types/jsonwebtoken": "^8.5.9",
     "js-yaml": "^4.1.0",
     "json-refs": "^3.0.15",
+    "jsonwebtoken": "^8.5.1",
     "msw": "^0.47.3",
     "openapi-client-axios-typegen": "^5.0.2"
   },
