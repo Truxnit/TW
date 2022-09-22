@@ -1,4 +1,9 @@
-export type RoutesWithoutParams = "/" | "/login" | "/register";
+export type RoutesWithoutParams =
+  | "/"
+  | "/login"
+  | "/register"
+  | "/noAccess"
+  | "/nsc";
 
 interface RoutesWithParams {
   "/nsc/:nation/:gender": "nation" | "gender";

@@ -1,27 +1,28 @@
 import { TwoWorldsRoutes } from "src/utils/routing/resolveRoute";
 import {
-  /*  reactiveLocalStorage,*/
+  reactiveLocalStorage,
   useReactiveLocalStorage,
 } from "src/utils/hooks/useReactiveLocalStorage";
 import {
   LOCALSTORAGE_ACCESS_TOKEN_KEY,
-  /*  LOCALSTORAGE_REFRESH_TOKEN_KEY,*/
+  LOCALSTORAGE_REFRESH_TOKEN_KEY,
 } from "src/utils/constants";
-
-export enum Groups {
-  PLAYER = "Spieler",
-  GAMEMASTER = "GameMaster", // hier irgendwas mit den Kampagnen bedenkenk
-  ADMIN = "Admin",
-}
+import { useMemo } from "react";
+import jwtDecode from "jwt-decode";
+import { AccessTokenParsed } from "src/models/auth/login";
+import { fetchAccessToken } from "src/apiclient/auth/fetchAccessToken";
+import { mapRoleKeyToEnum } from "src/utils/mapper/roleMapper";
+import { logout } from "src/utils/auth/auth";
+import { roleAccessControl, Roles } from "src/models/auth/auth";
 
 export interface UseAuthResult {
   login(username: string, password: string): Promise<void>;
   logout(): void;
-  isAllowedToAccess(path: TwoWorldsRoutes, group: Groups): boolean;
+  isAllowedToAccess(path: TwoWorldsRoutes, group: Roles): boolean;
   isTokenExpired(expiredDate?: number): boolean;
   currentUser: string | null;
   isAuthorized: boolean;
-  group: Groups | undefined;
+  group: Roles | undefined;
   expired: number | undefined;
 }
 
@@ -29,7 +30,7 @@ export const login = async (
   userName: string,
   password: string
 ): Promise<void> => {
-  /*  const token = fetchAccessToken(userName, password);
+  const token = await fetchAccessToken(userName, password);
   reactiveLocalStorage.setItem(
     LOCALSTORAGE_ACCESS_TOKEN_KEY,
     token.accessToken
@@ -37,22 +38,21 @@ export const login = async (
   reactiveLocalStorage.setItem(
     LOCALSTORAGE_REFRESH_TOKEN_KEY,
     token.refreshToken
-  );*/
+  );
 };
 
 export const isAllowedToAccess = (
   path: TwoWorldsRoutes,
-  group?: Groups
+  role?: Roles
 ): boolean => {
-  /*  if (groupAccessControl[path].length === 0) {
+  if (roleAccessControl[path].length === 0) {
     return true;
   }
-  if (!group) {
+  if (!role) {
     return false;
   }
-  const groupValue = mapGroupKeyToEnum(group);
-  return !!(groupValue && groupAccessControl[path].includes(groupValue));*/
-  return false;
+  const groupValue = mapRoleKeyToEnum(role);
+  return !!(groupValue && roleAccessControl[path].includes(groupValue));
 };
 
 export const isTokenExpired = (expiredDate?: number): boolean => {
@@ -64,31 +64,29 @@ export const isTokenExpired = (expiredDate?: number): boolean => {
   }
   return true;
 };
-/*
 
 export const useAuth = (): UseAuthResult => {
   const accessToken = useAccessToken();
- /!* const decodedToken = useMemo(() => {
+  const decodedToken = useMemo(() => {
     return accessToken != null
       ? (jwtDecode(accessToken) as AccessTokenParsed)
       : null;
-  }, [accessToken]);*!/
-/!*
+  }, [accessToken]);
+
   return {
     currentUser: decodedToken != null ? decodedToken.identity.username : null,
     isAuthorized: decodedToken != null,
     group:
       decodedToken != null
-        ? mapGroupKeyToEnum(decodedToken.identity.group)
+        ? mapRoleKeyToEnum(decodedToken.identity.role)
         : undefined,
     expired: decodedToken != null ? decodedToken.exp : undefined,
     login,
     logout,
     isAllowedToAccess,
     isTokenExpired,
-  };*!/
+  };
 };
-*/
 
 export const useAccessToken = (): string | null => {
   return useReactiveLocalStorage(LOCALSTORAGE_ACCESS_TOKEN_KEY);

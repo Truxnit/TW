@@ -2,6 +2,7 @@ import { AxiosRequestConfig } from "openapi-client-axios";
 import { twoWorldsAxios } from "src/apiclient/backend/two-worlds-api/two-worlds-axios";
 import { AxiosError } from "axios";
 import { getAuthorizationHeader } from "src/utils/auth/access-token";
+import { logout } from "src/utils/auth/auth";
 
 const setAndReturnConfigHeaders = (config: AxiosRequestConfig) => {
   config.headers = {
@@ -18,11 +19,10 @@ const setAndReturnConfigHeaders = (config: AxiosRequestConfig) => {
 
 const errorFunction = async (error: AxiosError) => {
   /*  if (error.response?.status === 503) {
-  }
-  if (error.response?.status === 401 || error.response?.status === 403) {
-    // auto logout if 401 or 403 response returned from api
-    //
   }*/
+  if (error.response?.status === 401 || error.response?.status === 403) {
+    logout(false);
+  }
   throw error;
 };
 

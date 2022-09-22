@@ -1,9 +1,9 @@
-import { Groups } from "src/utils/hooks/useAuth";
+import { Roles } from "src/models/auth/auth";
 
 export interface Identity {
   id: string;
   username: string;
-  group: Groups; //todo rename
+  role: Roles; //todo rename
 }
 
 export interface AccessTokenParsed {

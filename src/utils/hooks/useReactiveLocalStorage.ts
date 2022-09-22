@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import { useCallback, useState } from "react";
 import { useWindowEventListener } from "src/utils/hooks/useWindowEventListener";
 

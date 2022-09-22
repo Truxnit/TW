@@ -1,54 +1,46 @@
 import { Identity } from "src/models/auth/login";
-import { Groups } from "src/utils/hooks/useAuth";
-import { sign } from "jsonwebtoken";
-import { createRefreshTokenMock } from "src/utils/development/mock-api/mockRefreshToken";
 
-export const jwtAccessTokenSecurity = "accessToken";
-
-export const createAccessTokenMock = (
-  identity: Identity,
-  isExpired = false
-): string => {
-  return sign({ identity: identity }, jwtAccessTokenSecurity, {
-    expiresIn: !isExpired ? 180 : -1,
-  });
-};
+import { Roles } from "src/models/auth/auth";
 
 export const testPlayerIdentity: Identity = {
-  id: "9e12082e-c994-46ff-a1cf-466257328c79",
+  id: "4e12082e-c994-46ff-a1cf-466257328d48",
   username: "testPlayer",
-  group: Groups.PLAYER,
+  role: Roles.PLAYER,
 };
 
 export const gameMasterIdentity: Identity = {
   id: "9e12082e-c994-46ff-a1cf-466257328c79",
   username: "gameMaster",
-  group: Groups.GAMEMASTER,
+  role: Roles.GAMEMASTER,
 };
 
 export const adminIdentity: Identity = {
-  id: "9e12082e-c994-46ff-a1cf-586257328c23",
+  id: "8e12082e-c994-46ff-a1cf-586257328c23",
   username: "Admin",
-  group: Groups.ADMIN,
+  role: Roles.ADMIN,
 };
 
 export const mockTestPlayerAccessToken =
-  createAccessTokenMock(testPlayerIdentity);
-export const mockExpiredToken = createAccessTokenMock(gameMasterIdentity, true);
-export const mockGameMasterToken = createAccessTokenMock(gameMasterIdentity);
-export const mockAdminToken = createAccessTokenMock(adminIdentity);
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGl0eSI6eyJpZCI6IjRlMTIwODJlLWM5OTQtNDZmZi1hMWNmLTQ2NjI1NzMyOGQ0OCIsInVzZXJuYW1lIjoidGVzdFBsYXllciIsInJvbGUiOiJTcGllbGVyIn0sImlhdCI6MTY2Mzg0MDI0OH0.z3ybHLaZn_cvY8OU3Jqh3ekUxy_mFKBHMiTp3ztQjA0";
+export const mockExpiredToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGl0eSI6eyJpZCI6IjllMTIwODJlLWM5OTQtNDZmZi1hMWNmLTQ2NjI1NzMyOGM3OSIsInVzZXJuYW1lIjoiZ2FtZU1hc3RlciIsInJvbGUiOiJHYW1lTWFzdGVyIn0sImlhdCI6MTY2MzgzODc0MSwiZXhwIjoxNjYzODM4NzQwfQ.JzpYzCfZghvrsdoOFmquKuZtmUGoSrXb_ajpwclLroY";
+export const mockGameMasterToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGl0eSI6eyJpZCI6IjllMTIwODJlLWM5OTQtNDZmZi1hMWNmLTQ2NjI1NzMyOGM3OSIsInVzZXJuYW1lIjoiZ2FtZU1hc3RlciIsInJvbGUiOiJHYW1lTWFzdGVyIn0sImlhdCI6MTY2Mzg0MDI0OH0.ZSr3M2xesFLCDoh5itm--8hW0Y-fyn_3h0ZmLHWtzWE";
+export const mockAdminToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGl0eSI6eyJpZCI6IjhlMTIwODJlLWM5OTQtNDZmZi1hMWNmLTU4NjI1NzMyOGMyMyIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoiQWRtaW4ifSwiaWF0IjoxNjYzODQwMTYwfQ.544ZEXBvIxOjoTszUTC4ZKwKsr4-HYmt-hFRnzmf_yI";
 
 export const mockTestPlayerRefreshToken =
-  createRefreshTokenMock(testPlayerIdentity);
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGl0eSI6eyJpZCI6IjRlMTIwODJlLWM5OTQtNDZmZi1hMWNmLTQ2NjI1NzMyOGQ0OCIsInVzZXJuYW1lIjoidGVzdFBsYXllciIsInJvbGUiOiJTcGllbGVyIn0sImlhdCI6MTY2Mzg0MDc5NywiZXhwIjoxOTUxODQwNzk3fQ.7E4JiECuEQ-8Apg0O_dVswJfPfvD19OgSvRsz_yF1A4";
 export const mockExpiredRefreshToken =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGl0eSI6eyJpZCI6IjllMTIwODJlLWM5OTQtNDZmZi1hMWNmLTQ2NjI1NzMyOGM3OSIsInVzZXJuYW1lIjoib3V0Ym91bmQiLCJncm91cCI6Ik91dGJvdW5kIn0sImlhdCI6MSwiZXhwIjoxfQ.-I9HOSZAVxkdDm3-IeiGz9zfD6sYPT9S3fpxPe0Fa3Y";
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGl0eSI6eyJpZCI6IjRlMTIwODJlLWM5OTQtNDZmZi1hMWNmLTQ2NjI1NzMyOGQ0OCIsInVzZXJuYW1lIjoidGVzdFBsYXllciIsInJvbGUiOiJTcGllbGVyIn0sImlhdCI6MSwiZXhwIjoxfQ.yXux59WKth95e7zYjwpXZehm81078v1stKPELnxgmL4";
 export const mockGameMasterRefreshToken =
-  createRefreshTokenMock(gameMasterIdentity);
-export const mockAdminRefreshToken = createRefreshTokenMock(adminIdentity);
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGl0eSI6eyJpZCI6IjllMTIwODJlLWM5OTQtNDZmZi1hMWNmLTQ2NjI1NzMyOGM3OSIsInVzZXJuYW1lIjoiZ2FtZU1hc3RlciIsInJvbGUiOiJHYW1lTWFzdGVyIn0sImlhdCI6MTY2Mzg0MDc5NywiZXhwIjoxOTUxODQwNzk3fQ.qAro6lxcOSgCQEMvfxHkd4mSfjmf4M8gzAYYKbXHkbY";
+export const mockAdminRefreshToken =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZGVudGl0eSI6eyJpZCI6IjhlMTIwODJlLWM5OTQtNDZmZi1hMWNmLTU4NjI1NzMyOGMyMyIsInVzZXJuYW1lIjoiQWRtaW4iLCJyb2xlIjoiQWRtaW4ifSwiaWF0IjoxNjYzODQwNzk3LCJleHAiOjE5NTE4NDA3OTd9.2kVD42lZ2kIcpRrKKzT5E8GOP5QuVBtV3AXygcvH2Po";
 
 export type ExistingMockUser =
-  | "testplayer"
-  | "expireduser"
+  | "testPlayer"
+  | "expiredUser"
   | "gameMaster"
   | "admin";
 
@@ -61,31 +53,25 @@ export const createTokenForUserName = (
   switch (userName) {
     case "testplayer":
       return isAccessToken
-        ? createAccessTokenMock(testPlayerIdentity)
-        : createRefreshTokenMock(testPlayerIdentity);
+        ? mockTestPlayerAccessToken
+        : mockTestPlayerRefreshToken;
     case "expireduser":
-      return isAccessToken
-        ? createAccessTokenMock(gameMasterIdentity, true)
-        : mockExpiredRefreshToken;
+      return isAccessToken ? mockExpiredToken : mockExpiredRefreshToken;
     case "gameMaster":
-      return isAccessToken
-        ? createAccessTokenMock(gameMasterIdentity)
-        : createRefreshTokenMock(gameMasterIdentity);
+      return isAccessToken ? mockGameMasterToken : mockGameMasterRefreshToken;
     case "admin":
-      return isAccessToken
-        ? createAccessTokenMock(adminIdentity)
-        : createRefreshTokenMock(adminIdentity);
+      return isAccessToken ? mockAdminToken : mockAdminRefreshToken;
   }
   return "";
 };
 
 export const mockUsers: Record<ExistingMockUser | string, UserData> = {
-  testplayer: {
-    password: "testpass",
+  testPlayer: {
+    password: "testpass10",
     token: mockTestPlayerAccessToken,
     refreshToken: mockTestPlayerRefreshToken,
   },
-  expireduser: {
+  expiredUser: {
     password: "expiredpass",
     token: mockExpiredToken,
     refreshToken: mockExpiredRefreshToken,
@@ -96,7 +82,7 @@ export const mockUsers: Record<ExistingMockUser | string, UserData> = {
     refreshToken: mockGameMasterRefreshToken,
   },
   admin: {
-    password: "adminpass",
+    password: "adminpass10",
     token: mockAdminToken,
     refreshToken: mockAdminRefreshToken,
   },
