@@ -14,16 +14,22 @@ import {
 import { useForm } from "src/utils/hooks/useForm";
 import { validateRegister } from "src/utils/validation/formValidation";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import { apiPathToMswMatcher } from "src/utils/msw-types";
+/*
+import { useAuth } from "src/utils/hooks/useAuth";
+*/
 
 export const LoginPage: React.FC = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
+  /*  const { login } = useAuth();*/
   useDocumentTitle(t("loginPage.title"));
   const [displayPassword, setDisplayPassword] = useState<boolean>(false);
   const { inputValue, handelInputChange } = useForm(buildLoginFormObject());
   const [errors, setErrors] = useState<InputValueObject | null>(null);
 
-  const submitHandler = (e: FormEvent<HTMLFormElement>) => {
+  const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     e.stopPropagation();
     setErrors(null);
@@ -31,6 +37,11 @@ export const LoginPage: React.FC = () => {
     if (errors[InputValueType.PASSWORD] || errors[InputValueType.USERNAME]) {
       setErrors(errors);
     } else {
+      // await login(inputValue[InputValueType.USERNAME],inputValue[InputValueType.PASSWORD]);
+      await axios.post(apiPathToMswMatcher("/v1/login/"), {
+        username: inputValue[InputValueType.USERNAME],
+        password: inputValue[InputValueType.PASSWORD],
+      });
       // call endpoint for register
       //success navigate to main page
       navigate("/");

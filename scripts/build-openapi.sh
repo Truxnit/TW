@@ -32,4 +32,5 @@ prettier --loglevel warn --write ${OPENAPI_GENERATED_JSON} ${OPENAPI_RESOLVED_JS
 
 echo "Generating ${TYPES_D_TS}"
 echo '/* eslint-disable */' > ${TYPES_D_TS}
-typegen ${OPENAPI_RESOLVED_JSON} >> ${TYPES_D_TS}
+tyogen ${OPENAPI_RESOLVED_JSON} >> ${TYPES_D_TS}
+#npx oazapfts "$(pwd)/${OPENAPI_RESOLVED_JSON}" >> "$(pwd)/${TYPES_D_TS}"

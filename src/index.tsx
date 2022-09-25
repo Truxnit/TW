@@ -5,6 +5,7 @@ import { initTranslations } from "src/i18n";
 import { AppRoutes } from "src/routes";
 import { setupMockApiForDevServer } from "src/utils/development/mock-api-for-dev-server";
 import { logException, logInfo } from "src/utils/logger";
+//import { initAxios } from "src/initAxios";
 
 //let mockApiReady: Promise<void> = Promise.resolve();
 
@@ -19,6 +20,7 @@ const root = ReactDOM.createRoot(
 
 mockApiReady
   .then(() => initTranslations())
+  /*  .then(() => initAxios())*/
   .then(() =>
     root.render(
       <React.StrictMode>
